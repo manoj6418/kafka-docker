@@ -1,0 +1,21 @@
+name: Docker Compose CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build and run the Docker Compose
+      run: docker-compose up -d
+
+    - name: Wait for Kafka to start
+      run: sleep 30
+
+    - name: Test the Docker Compose
+      run: |
+        docker exec
